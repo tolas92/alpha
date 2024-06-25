@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="prototype">
+
+
+    <xacro:property name="wheel_radius" value="0.032"/>
+    <xacro:property name="wheel_length" value="0.026"/>
+   
+   <!--===============xacro for continuous joints=========================-->
+    <xacro:macro name="joint_wheel" params="name origin parent child">
+        <joint name="${name}" type="continuous">
+            <origin xyz="${origin}" rpy="0.0 0.0 0.0"/>
+            <parent link="${parent}"/>
+            <child link="${child}"/>
+            <axis xyz="0.0 1.0 0.0"/>
+            <limit effort="200" velocity="2.0"/>
+            <joint_properties damping="1.1" friction="1.0"/>
+        </joint>
+    </xacro:macro>
+
+  <!--===================== xacro for fixed joints===========================-->  
+  <xacro:macro name="fixed_joint" params="name origin parent child">
+    <joint name="${name}" type="fixed">
+        <origin xyz="${origin}" rpy="0.0 0.0 0.0"/>
+        <parent link="${parent}"/>
+        <child link="${child}"/>
+    </joint>
+  </xacro:macro>
+
+
+</robot>

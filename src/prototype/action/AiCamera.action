@@ -1,0 +1,10 @@
+# Request
+string user_request
+
+
+---
+# Result
+string ai_end
+---
+# Feedback
+string ai_response

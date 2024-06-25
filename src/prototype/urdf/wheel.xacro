@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<!--=========================starting xacros================================-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="prototype">
+<xacro:include filename="$(find prototype)/urdf/joint_macros.xacro"/>
+
+
+<!--==========================xacro for wheel=============================-->
+    <xacro:macro name="wheel" params="wheel_name">
+        <link name="${wheel_name}">
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="1.57 0.0 0.0"/>
+                <geometry>
+                 <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+                </geometry>
+                <material name="black">
+                    <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5707 0.0"/>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <mass value="0.034"/>
+              <inertia ixx="1.37e-5" ixy="0" ixz="0" iyy="1.37e-5" iyz="0" izz="3.41e-6"/>             
+              </inertial>
+              <dynamics damping="0.5" friction="0.1"/>
+
+        </link>   
+   </xacro:macro>
+
+   <!-- *********************wheel links and joints***************************************-->
+
+<xacro:joint_wheel name="back_right_wheel_joint" origin="-0.1806 -0.225 -0.05" 
+parent="chassis" child="back_right_wheel"/>
+
+<xacro:wheel  wheel_name="back_right_wheel"/>
+
+<xacro:joint_wheel name="back_left_wheel_joint" origin="-0.1806 0.225 -0.05" 
+parent="chassis" child="back_left_wheel"/>
+
+<xacro:wheel  wheel_name="back_left_wheel"/>
+
+</robot>

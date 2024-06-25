@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!--=========================starting xacros================================-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="prototype">
+
+
+
+  <!-- =======================xacro for box_links========================-->
+  <xacro:macro name="box_link" params="name mass ixx iyy izz box">
+    <link name="${name}">
+     <visual>
+     <origin xyz="0 0 0.1" rpy="0 0 0"/>
+        <geometry>
+            <box size="${box}"/>
+        </geometry>
+        <material name="red">
+            <color rgba="1.0 0.0 0.0 1.0"/>
+        </material>
+     </visual>
+     </link>
+ </xacro:macro>
+
+  <!--==================== xacro for box_link with mesh==============================-->
+  <xacro:macro name="box_link_meshes" params="name mass ixx iyy izz box FilePath
+  collision">
+     <link name="${name}">
+      <inertial>
+         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+         <mass value="${mass}"/>
+         <inertia ixx="${ixx}" ixy="0.0" ixz="0.0" iyy="${iyy}" iyz="0.0" izz="${izz}"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0075 0 0" rpy="0.0 0.0 0.0"/>
+         <geometry>
+             <mesh filename="${FilePath}" scale="1 1 1"/>
+         </geometry>
+         <material name="">
+             <color rgba="1.0 0.0 0.0 1.0"/>
+         </material>
+      </visual>
+      <collision>
+         <origin xyz="${collision}" rpy="0.0 0.0 0.0"/>
+         <geometry>
+             <box size="${box}"/>
+         </geometry>
+      </collision>
+      </link>
+  </xacro:macro>
+ 
+
+ </robot>
