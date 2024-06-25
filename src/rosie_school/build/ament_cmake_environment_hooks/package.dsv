@@ -1,0 +1,4 @@
+source;share/rosie_school/local_setup.bash
+source;share/rosie_school/local_setup.dsv
+source;share/rosie_school/local_setup.sh
+source;share/rosie_school/local_setup.zsh

@@ -1,0 +1,47 @@
+<root main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <RecoveryNode number_of_retries="6" name="Check_battery_first">
+      <ReactiveSequence name="CheckIfNewPathNeeded">
+        <Inverter>
+             ################# The key Node#######################
+            <IsBatteryLow min_battery="90.0" battery_topic="/battery_state" is_voltage="true"/>
+         </Inverter>
+        <RecoveryNode number_of_retries="6" name="NavigateRecovery">
+          <PipelineSequence name="NavigateWithReplanning">
+            <RateController hz="1.0">
+              <RecoveryNode number_of_retries="1" name="ComputePathToPose">
+                <Action ID="ComputePathToPose" goal="{goal}" path="{path}" planner_id="GridBased"/>
+                <ClearEntireCostmap name="ClearGlobalCostmap-Context" service_name="global_costmap/clear_entirely_global_costmap"/>
+              </RecoveryNode>
+            </RateController>
+            <RecoveryNode number_of_retries="1" name="FollowPath">
+              <FollowPath path="{path}" controller_id="FollowPath"/>
+              <ClearEntireCostmap name="ClearLocalCostmap-Context" service_name="local_costmap/clear_entirely_local_costmap"/>
+            </RecoveryNode>
+          </PipelineSequence>
+          <ReactiveFallback name="RecoveryFallback">
+            <GoalUpdated/>
+            <RoundRobin name="RecoveryActions">
+              <Sequence name="ClearingActions">
+                <ClearEntireCostmap name="ClearLocalCostmap-Subtree" service_name="local_costmap/clear_entirely_local_costmap"/>
+                <ClearEntireCostmap name="ClearGlobalCostmap-Subtree" service_name="global_costmap/clear_entirely_global_costmap"/>
+              </Sequence>
+              <Spin spin_dist="1.57"/>
+              <Wait wait_duration="5"/>
+              <BackUp backup_dist="0.30" backup_speed="0.05"/>
+            </RoundRobin>
+          </ReactiveFallback>
+        </RecoveryNode>
+      </ReactiveSequence>
+      <Sequence name="move_to_charge">
+        <ApproachCharge/>
+        <PipelineSequence name="NavigateWithReplanning1">
+          <SpeedController min_rate="0.1" max_rate="1.0" min_speed="0.0" max_speed="0.26">
+            <ComputePathToPose goal="{goal}" path="{path}" planner_id="GridBased"/>
+          </SpeedController>
+          <FollowPath path="{path}"  controller_id="FollowPath"/>
+        </PipelineSequence>
+      </Sequence>
+    </RecoveryNode>
+  </BehaviorTree>
+</root>

@@ -1,0 +1,11 @@
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/uninstall.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/ai_server_uninstall.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/ament_cmake_python_copy_ai_server.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/ament_cmake_python_build_ai_server_egg.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/test.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/edit_cache.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/rebuild_cache.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/list_install_components.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/install.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/install/local.dir
+/home/tolasing/main_ws/ml_ws/src/ai_server/build/CMakeFiles/install/strip.dir

@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+a29e2fa85d49b6d20bdbd90a18f9a682 CMakeFiles/ament_cmake_python_build_rosie_school_egg
+f81f978dea59bcfe0ec1fd3338c45365 CMakeFiles/ament_cmake_python_copy_rosie_school
+3ab415fc449739feadfcfa7ec7fa2ab1 CMakeFiles/rosie_school_uninstall
